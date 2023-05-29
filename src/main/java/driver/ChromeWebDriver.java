@@ -20,10 +20,7 @@ public class ChromeWebDriver implements IDriver{
         options.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", ""));
         options.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC", "false")));
 
-        LoggingPreferences logPrefs = new LoggingPreferences();
-        logPrefs.enable(LogType.PERFORMANCE, Level.INFO);
-        options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-
+        Logger logger = LogManager.getLogger();
         downloadLocalWebDriver(DriverManagerType.CHROME);
 
         return new ChromeDriver(options);

@@ -11,14 +11,13 @@ public interface IDriver {
     WebDriver newDriver() throws DriverNotFindException;
 
     default void downloadLocalWebDriver(DriverManagerType driverType) throws DriverNotFindException {
-        Config wdmConfig = WebDriverManager.globalConfig();
-        wdmConfig.setAvoidBrowserDetection(true);
 
         String browserVersion = System.getProperty("browser.version", "");
 
         if (!browserVersion.isEmpty()) {
             switch (driverType) {
                 case CHROME:
+                    Config wdmConfig = new Config();
                     wdmConfig.setChromeDriverVersion(browserVersion);
                     break;
                 default:
