@@ -1,20 +1,16 @@
-package driver.impl;
-import exceptions.DriverNotSupportedException;
+package driver;
+import exeption.DriverNotFindException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.Config;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.exceptions;
 
 public interface IDriver {
 
-    WebDriver newDriver() throws DriverNotSupportedException;
+    WebDriver newDriver() throws DriverNotFindException;
 
-    default void downloadLocalWebDriver(DriverManagerType driverType) throws DriverNotSupportedException {
+    default void downloadLocalWebDriver(DriverManagerType driverType) throws DriverNotFindException {
         Config wdmConfig = WebDriverManager.globalConfig();
         wdmConfig.setAvoidBrowserDetection(true);
 
@@ -26,7 +22,7 @@ public interface IDriver {
                     wdmConfig.setChromeDriverVersion(browserVersion);
                     break;
                 default:
-                    throw new DriverNotSupportedException(driverType.name());
+                    throw new DriverNotFindException(driverType.name());
             }
         }
 
