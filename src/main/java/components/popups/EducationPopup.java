@@ -15,11 +15,11 @@ public class EducationPopup extends AbsBasePopup{
 
     @Override
     public void popupShouldNotBeVisible() {
-        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(basePopupSelector));
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(basePopupSelector)));
     }
 
     @Override
     public void popupShouldBeVisible() {
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(basePopupSelector));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(basePopupSelector)));
     }
 }
